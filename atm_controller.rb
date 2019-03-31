@@ -12,6 +12,7 @@ class ATMController
 def run
         choice = "" # need to intialise choice as a variable otherwise you can't check for it in the while statement
         @screen.welcome # Display welcome screen
+        gets.chomp # wait for user to hit enter
         balance = 100 # Initialise balance with base of 100 
 
         while choice != "q"
