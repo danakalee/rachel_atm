@@ -9,14 +9,16 @@ class ATMController
         @model = ATMModel.new
     end
 
-    def run
+def run
+        choice = "" # need to intialise choice as a variable otherwise you can't check for it in the while statement
         @screen.welcome # Display welcome screen
         gets.chomp # wait for user to hit enter
-        @screen.show_menu # Display menu choices
-        choice = @get.get_menu_choice # Ask view to get user input for menu option
-        balance = 100 # Initialise balance with base of 100 
 
         while choice != "q"
+            @screen.show_menu # Display menu choices
+            choice = @get.get_menu_choice # Ask view to get user input for menu option
+            
+            balance = 100 # Initialise balance with base of 100 
             case choice
                 when "d"
                     # Send program along to Deposit method
@@ -34,9 +36,8 @@ class ATMController
                     # Send program along to Show Balance method
                     @screen.show_balance(balance) # Display newly updatd balance
                 else
-                    @screen.error
+                    @screen.error # show error screen
             end
-            @screen.show_menu # Display menu choices
         end
         # exit screen
         @screen.goodbye
