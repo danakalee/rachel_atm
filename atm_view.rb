@@ -16,6 +16,11 @@ class ATMView
         puts "| {D}eposit | {W}ithrawal | {S}how balance | {Q}uit |"
     end
 
+    def overdrawn
+        puts "OVERDRAWN!!"
+        puts "You cannot withdraw more than your balance."
+    end
+
     def show_balance(balance)
         puts "Your current balance is #{balance}."
     end

@@ -17,8 +17,8 @@ def run
 
         while choice != "q"
             @screen.show_menu # Display menu choices
+            @screen.show_balance(balance) # Display balance to viewer before making a choice
             choice = @get.get_menu_choice # Ask view to get user input for menu option
-            
             case choice
                 when "d"
                     # Send program along to Deposit method
@@ -29,14 +29,21 @@ def run
                 when "w"
                     # Send program along to Withdrawal method
                     option_chosen = "withdraw"
-                    withdrawal_amount = @get.get_amount(option_chosen) # Ask view to get user input 
-                    balance = @model.withdraw_balance(balance, withdrawal_amount) # Ask model to calculate withdraw
-                    @screen.show_balance(balance) # Display newly updatd balance
+                    withdrawal_amount = @get.get_amount(option_chosen) # Ask view to get user input
+
+                    if balance >= withdrawal_amount 
+                        balance = @model.withdraw_balance(balance, withdrawal_amount) # Ask model to calculate withdraw
+                        @screen.show_balance(balance) # Display newly updatd balance
+                    else
+                        @screen.overdrawn
+                    end
                 when "s"
                     # Send program along to Show Balance method
                     @screen.show_balance(balance) # Display newly updatd balance
+                when "q"
+                    break
                 else
-                    @screen.error # show error screen
+                    @screen.error # anything that is not d, w, s, q, display error message
             end
         end
         # exit screen
