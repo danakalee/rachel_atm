@@ -1,6 +1,6 @@
 class ATMModel
     def deposit_balance(balance, deposit_amount)
-        balance = balance + deposit_amount
+        balance += deposit_amount
         return balance
     end
 
